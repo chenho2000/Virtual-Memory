@@ -1,0 +1,8 @@
+
+Hit count: 1939658
+Miss count: 6011
+Clean evictions: 4946
+Dirty evictions: 1015
+Total references : 1945669
+Hit rate: 99.6911
+Miss rate: 0.3089
