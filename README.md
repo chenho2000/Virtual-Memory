@@ -1,51 +1,35 @@
-# Introduction
+# Memory Access Pattern Analysis and Virtual Memory Simulation
 
-In this assignment, we will complete the implementation of a message queue by incorporating the necessary locks and condition variable operations to synchronize access to the message queue. Additionally, we will implement I/O multiplexing functionality, inspired by the `poll()` system call.
+## Introduction
+This repository contains the code and instructions for investigating memory access patterns, simulating page tables operation, and implementing various page replacement algorithms. These exercises provide practical experience with algorithms discussed in class.
 
-## Overview
+**Overview:** [video slides](video_slides_link) [annotated slides](annotated_slides_link)
 
-The task involves enhancing a message queue implementation by synchronizing access through locks and condition variables. We will model the I/O multiplexing functionality after the `poll()` system call.
+## Part 1: Memory Reference Traces
+The directory `/u/csc369h/summer/pub/a3` on the `teach.cs` machines contains four different programs:
 
-### Part 1: Message Queue Implementation
+1. `simpleloop.c`: Loops over an array allocated in the heap.
+2. `repeatloop.c`: Loops over a heap-allocated array multiple times.
+3. `matmul.c`: Naive matrix multiplication with customizable element size.
+4. `blocked.c`: Memory-aware matrix multiplication with potentially better hit rate under certain page replacement algorithms.
 
-A message queue, distinct from a pipe, stores individual messages preceded by their length. Your task is to implement functions in `msg_queue.c`, excluding `msg_queue_poll()`. These functions interact with the message queue, and the descriptions are provided in `msg_queue.h`.
+Valgrind, with a custom shell script `run.sh`, can be used to print memory reference traces. Special markers in the programs separate relevant memory access patterns. The resulting traces are stored in `/u/csc369h/summer/pub/a3/traces/`. Additionally, the `fastslim.py` program reduces trace size, focusing on page accesses.
 
-### Part 2: Implementing `msg_queue_poll()`
+## Part 2: Virtual to Physical Translation
+This section involves implementing virtual-to-physical address translation and demand paging using a three-level page table. It includes four page replacement algorithms: FIFO, Clock, exact LRU, and MRU.
 
-`msg_queue_poll()` monitors multiple message queues for I/O events. Its API mirrors that of the `poll()` system call. You will implement this function in three stages, as detailed below.
+**Requirements:**
+- Readings about memory, especially paging.
+- Setup instructions for accessing starter code.
 
-## Part 1: Message Queue Implementation
+**Tasks:**
+1. **Address Translation and Paging:** Implement virtual-to-physical address translation and demand paging.
+2. **Page Replacement Algorithms:** Implement FIFO, Clock, exact LRU, and MRU algorithms.
+3. **Testing:** Run provided traces and analyze results.
 
-### Task
+## Important Notes
+- Algorithms must be implemented with efficiency in mind.
+- Each trace file must follow specific naming and content requirements.
+- Simulators and algorithms should adhere to provided output formats.
 
-- Implement functions in `msg_queue.c`, except `msg_queue_poll()`.
-- Focus on `msg_queue_read()` and `msg_queue_write()` functions, ensuring correct synchronization.
-- Initially, implement blocking versions of these functions. Later, add support for non-blocking semantics.
-
-## Part 2: Implementing `msg_queue_poll()`
-
-### Task
-
-- Implement `msg_queue_poll()` to wait until one of multiple queues is ready for I/O.
-- The API resembles that of the `poll()` system call.
-- Your implementation should consist of three stages, as outlined below.
-
-### Implementation Stages
-
-1. **Check for Triggered Events:**
-   - Verify if any requested events on monitored queues have already occurred.
-
-2. **Subscribe to Events:**
-   - If no events have occurred, block until another thread triggers an event.
-   - Use condition variables for blocking and signaling.
-
-3. **Handle Triggered Events:**
-   - After blocking or if no blocking is needed, determine which events have been triggered.
-   - Return the number of queues with triggered events.
-
-### Important Details
-
-- Utilize the provided synchronization functions and follow the instructions in the starter code.
-- Make use of the linked list implementation in `list.h` for the wait queue.
-
-For further understanding, refer to the provided code and additional resources as needed.
+For detailed instructions and code, refer to the respective directories and files.
