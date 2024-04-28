@@ -1,9 +1,7 @@
 # Memory Access Pattern Analysis and Virtual Memory Simulation
 
 ## Introduction
-This repository contains the code and instructions for investigating memory access patterns, simulating page tables operation, and implementing various page replacement algorithms. These exercises provide practical experience with algorithms discussed in class.
-
-**Overview:** [video slides](video_slides_link) [annotated slides](annotated_slides_link)
+This repository contains the code and instructions for investigating memory access patterns, simulating page tables operation, and implementing various page replacement algorithms. 
 
 ## Part 1: Memory Reference Traces
 The directory `/u/csc369h/summer/pub/a3` on the `teach.cs` machines contains four different programs:
