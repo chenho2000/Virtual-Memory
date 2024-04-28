@@ -1,4 +1,5 @@
 # Memory Access Pattern Analysis and Virtual Memory Simulation
+*This repository stores work done by Hongyu Chen and Ming Gong in CSC369 Operating Systems.*
 
 ## Introduction
 This repository contains the code and instructions for investigating memory access patterns, simulating page tables operation, and implementing various page replacement algorithms. 
